@@ -1,22 +1,47 @@
 
-import { Outlet } from "react-router-dom";
-import Footer from "./Components/Footer";
-import Navbar from "./Components/Navbar";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import { MainLayout } from "./Components/mainLayout";
+import { ThemeProvider } from "./context/useTheme";
+import { TokenProvider } from "./context/useToken";
+
+import Detail from "./Routes/Detail"
+import Home from "./Routes/Home"
+import Contact from "./Routes/Login"
+import LoginForm from "./Components/LoginForm";
 
 
 function App() {
+  
+  const appRouter = createBrowserRouter([
+    {
+      path: '',
+      element: <MainLayout />,
+      children: [
+        {
+          path: '',
+          element: <Home />
+        },
+        {
+          path: 'home',
+          element: <Home />
+        },
+        {
+          path: 'contact',
+          element: <Contact />
+        },
+        {
+          path: '/dentista/:id',
+          element: <Detail />
+        }
+      ]
+    }
+  ])
   return (
-    <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar a classe dark ou light */}
-      <div className={`app light}`}>
-        <Navbar />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
-    </>
+  <ThemeProvider>
+    <TokenProvider>
+      <RouterProvider router={appRouter} />
+    </TokenProvider>
+  </ThemeProvider>
   );
 }
 

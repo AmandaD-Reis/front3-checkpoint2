@@ -5,14 +5,17 @@ import Home from "../Routes/Home"
 import Detail from "../Routes/Detail"
 import Login from "../Routes/Login"
 import App from "../App"
-
+import { ThemeProvider } from "../context/useTheme"
+import {TokenProvider} from "../context/useToken"
 
 const renderWithContext = (ui, providerValue)=>{
     return render(
         <BrowserRouter>
-            <ContextProvider value={providerValue || {theme: "light", data: []}} >   
+          <ThemeProvider>
+            <TokenProvider>
                 {ui}
-            </ContextProvider>
+            </TokenProvider>
+          </ThemeProvider>
         </BrowserRouter>
     )
 }
