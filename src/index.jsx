@@ -2,42 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-
 import Navbar from "./Components/Navbar";
 import Home from "./Routes/Home";
-import Login from "./Routes/Login"
-import Detail from "./Routes/Detail"
 import Footer from "./Components/Footer";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //Lembre-se de configurar suas rotas e seu contexto aqui
-
 root.render(
   <React.StrictMode>
     <App />
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/detail/",
-    element: <Detail />,
-  },
-])
-
-root.render(
-  <React.StrictMode>
-    <Navbar />
-    <RouterProvider router={router} />
-    <Footer />
   </React.StrictMode>
 );
